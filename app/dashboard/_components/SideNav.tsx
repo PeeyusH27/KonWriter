@@ -33,7 +33,7 @@ const SideNav = () => {
     useEffect(()=> console.log(path), [])
 
     return (
-        <div className='h-screen p-5 shadow-sm'>
+        <div className='h-screen p-5 shadow-sm bg-white'>
             <div className='flex justify-center overflow-hidden'>
                 <Image src={'/logomain.png'} alt='logo' width={150} height={150} />
             </div>

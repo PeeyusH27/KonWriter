@@ -11,9 +11,9 @@ const DashBoard = () => {
   return (
     <div>
         {/* Search section */}
-        <SearchSection onSearchInput={(value:string) => console.log(value)}/>
+        <SearchSection onSearchInput={(value:string) => setUserSearch(value)}/>
         {/* Template list section */}
-        <TemplateListSection />
+        <TemplateListSection userSearch={userSearch}/>
     </div>
   )
 }

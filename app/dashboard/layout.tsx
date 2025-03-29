@@ -6,7 +6,7 @@ const layout = ({ children }: Readonly<{
     children: React.ReactNode;
 }>) => {
     return (
-        <div>
+        <div className='bg-zinc-100 min-h-screen'>
             <div className='md:w-64 hidden md:block fixed'>
                 <SideNav />
             </div>
