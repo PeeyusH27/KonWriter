@@ -42,7 +42,7 @@ const SideNav = () => {
                 {menuList.map((menu, index) => (
                     <div className={`flex pl-8 gap-2 mb-2 p-3 
                         hover:bg-primary hover:text-white rounded-lg cursor-pointer items-center 
-                    ${path == menu.path && 'bg-primary text-white'}`}>
+                    ${path == menu.path && 'bg-primary text-white'}`} key={index}>
                         <menu.icon className='h-7 w-7'/>
                         <h2 className='text-lg'>{menu.name}</h2>
                     </div>

@@ -1,10 +1,10 @@
 export default[
     {
         name: 'Blog Title',
-        desc: 'AI tool to write blog based on your needs and writing style.',
+        desc: 'AI tool to curate blogs based on topics given by user, write blogs based on your needs and writing style.',
         category: 'Blog',
         icon: 'https://cdn-icons-png.flaticon.com/128/2593/2593549.png',
-        aiPrompt: 'Give me 5 blog topic ideas in bullet points only based on niche & outline topics and give me the result in Rich text editor format.',
+        aiPrompt: 'Give me 5 blog topic ideas in bullet points only, (no description) based on niche & outline in Rich text editor format.',
         slug: 'generate-blog-title',
         form: [
             {
@@ -27,7 +27,7 @@ export default[
         category: 'blog',
         icon: 'https://cdn-icons-png.flaticon.com/128/4905/4905454.png',
         slug: 'blog-content-generation',
-        aiPrompt: 'Generate Blog Content based on topic and outline in rich text editor format',
+        aiPrompt: 'Generate Blog Content based on topic and consider data in outline as specifications and points to generate a blog. Consider the points in oultine also to curate the blog, if the points in outline are Questions dont paste tem as it is in the response, rather use them as points. Please provide the response in plain text format without any HTML tags.',
         form: [
             {
                 label: 'Enter your blog topic',
@@ -38,7 +38,8 @@ export default[
             {
                 label: 'Enter blog Outline here',
                 field: 'textarea',
-                name: 'outline'
+                name: 'outline',
+                required: true
             }
         ]
     },
@@ -87,7 +88,7 @@ export default[
         category: 'Youtube Tool',
         icon: 'https://cdn-icons-png.flaticon.com/128/2111/2111748.png',
         slug: 'youtube-description',
-        aiPrompt: 'Generate Youtube description with emoji under 4-5 lines based on topic and outline in rich text editor format',
+        aiPrompt: "Generate a YouTube video description based on the provided topic and outline. The output should be in a rich text editor format. If the outline contains any links, remove 'www.' from them and paste them individually, the links should be like https://linkfromuserwithoutwww. There must not be any HTML tags in the description, please return the response in Text format.",
         form: [
             {
                 label: 'Enter your blog topic/title',
@@ -96,9 +97,10 @@ export default[
                 required:true
             },
             {
-                label: 'Enter youtube Outline here',
+                label: 'Enter description details and links here',
                 field: 'textarea',
-                name: 'outline'
+                name: 'outline',
+                required: true
             }
         ]
     },
@@ -160,7 +162,7 @@ export default[
         category: 'blog',
        
         slug: 'instagram-post-generator',
-        aiPrompt: 'Generate 3 Instagram post depends on a given keywords and give output in  in rich text editor format',
+        aiPrompt: 'Generate 3 Instagram post captions depending upon given keywords and give output in rich text editor format in not more than 30 words per caption.',
         form: [
             {
                 label: 'Enter Keywords for your post',
@@ -236,7 +238,7 @@ export default[
         category: 'Coding',
        
         slug: 'write-code',
-        aiPrompt: 'Depends on user codeDescription write a code and give output in  in rich text editor format in code block ',
+        aiPrompt: 'Depending on user description write a code and give output in rich editor format in code block ',
         form: [
             {
                 label: 'Enter description of code you want along with Programming Lang',

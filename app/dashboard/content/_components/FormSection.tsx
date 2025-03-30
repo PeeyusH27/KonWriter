@@ -6,18 +6,20 @@ import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { Loader2Icon } from 'lucide-react'
 
 interface PROPS {
     currentTemplate?: TEMP;
     userFormInput: any;
+    loading: boolean;
 }
 
-function FormSection({ currentTemplate, userFormInput }: PROPS) {
+function FormSection({ currentTemplate, userFormInput, loading }: PROPS) {
 
     const [formData, setFormData] = useState<any>()
-    const handleInputChange = (e:any) => {
-        const {name, value} = e.target;
-        setFormData({...formData, [name]:value})
+    const handleInputChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value })
     }
 
     const onSubmit = (e: any) => {
@@ -33,19 +35,25 @@ function FormSection({ currentTemplate, userFormInput }: PROPS) {
             <p className='text-gray-500 text-sm'>{currentTemplate?.desc}</p>
             <form className='mt-6' onSubmit={onSubmit}>
                 {currentTemplate?.form?.map((item, index) => (
-                    <div className='my-2 flex flex-col gap-2 mb-7'>
+                    <div className='my-2 flex flex-col gap-2 mb-7' key={index}>
                         <label className='font-bold'>{item.label}</label>
                         {item.field == 'input' ?
-                            <Input name={item.name} required={item?.required} onChange={handleInputChange}/>
+                            <Input name={item.name} required={item?.required} onChange={handleInputChange} />
                             :
                             item.field == 'textarea' ?
-                                <Textarea name={item.name} required={item?.required} onChange={handleInputChange}/>
+                                <Textarea name={item.name} required={item?.required} onChange={handleInputChange} />
                                 :
                                 null
                         }
                     </div>
                 ))}
-                <Button className='w-full py-6' type='submit'>Generate Content</Button>
+                <Button className='w-full py-6'
+                    type='submit'
+                    disabled={loading}
+                >
+                    {loading && <Loader2Icon className='animate-spin' />}
+                    Generate Content
+                </Button>
             </form>
         </div>
     )
