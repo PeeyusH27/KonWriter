@@ -16,6 +16,7 @@ import { useUser } from '@clerk/nextjs';
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
 import { useRouter } from 'next/navigation';
 import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext';
+import { Placeholder, SQL } from 'drizzle-orm';
 
 interface PROPS {
     params: Promise<{
@@ -66,16 +67,29 @@ function CreateNewContent(props: PROPS) {
         setUpdateCreditUsage(Date.now())
     };
 
-    const saveInDatabase = async(formData:any, slug:any, aiResponse:string) => {
-        const result = await db.insert(AIOutput).values({
-            formData: formData,
-            templateSlug: slug,
-            aiResponse: aiResponse,
-            createdBy: user?.primaryEmailAddress?.emailAddress,
-            createdAt: Date.now()
-        })
-        console.log(result)
-    }
+    const saveInDatabase = async (formData: any, slug: string, aiResponse: string) => {
+        if (!formData || !slug || !aiResponse) {
+            console.error("Error: Missing required values.");
+            return;
+        }
+    
+        const formattedFormData = JSON.stringify(formData || {});
+    
+        try {
+            const result = await db.insert(AIOutput).values({
+                formData: formattedFormData,
+                templateSlug: slug,
+                aiResponse: aiResponse,
+                createdBy: user?.primaryEmailAddress?.emailAddress || 'Unknown',
+                createdAt: new Date().toISOString(),
+            });
+    
+            console.log("Data saved successfully:", result);
+        } catch (error) {
+            console.error("Database insertion error:", error);
+        }
+    };
+    
 
     return (
         <div className='p-6'>
