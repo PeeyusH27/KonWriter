@@ -37,7 +37,9 @@ const SideNav = () => {
     return (
         <div className='h-screen p-5 shadow-sm bg-white relative'>
             <div className='flex justify-center overflow-hidden'>
+                <Link href={'/dashboard'}>
                 <Image src={'/logomain.png'} alt='logo' width={150} height={150} />
+                </Link>
             </div>
             <hr className='my-5 border' />
             <div className='mt-5'>
