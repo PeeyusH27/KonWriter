@@ -120,3 +120,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes gradientMove {
+  0% { background-position: top left; }
+  50% { background-position: bottom right; }
+  100% { background-position: top left; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientMove 5s infinite alternate ease-in-out;
+}
