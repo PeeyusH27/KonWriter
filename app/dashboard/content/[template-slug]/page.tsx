@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, use } from 'react'
+import React, { useState, use, useContext } from 'react'
 import FormSection from '../_components/FormSection';
 import OutputSection from '../_components/OutputSection';
 import { TEMP } from '../../_components/TemplateListSection';
@@ -13,6 +13,9 @@ import { sendPromptToGemini } from '@/utils/AiModel';
 import { db } from '@/utils/db';
 import { AIOutput } from '@/utils/schema';
 import { useUser } from '@clerk/nextjs';
+import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
+import { useRouter } from 'next/navigation';
+import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext';
 
 interface PROPS {
     params: Promise<{
@@ -28,10 +31,26 @@ function CreateNewContent(props: PROPS) {
 
     //GET USER USING CLERK HOOK
     const {user} = useUser()
+    const router = useRouter()
 
     const currentTemplate: TEMP | undefined = Templates?.find((item) => item.slug == templateSlug);
 
+    const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
+    const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext)
+
+    /**Used to generate AI content
+     * @param formData
+     * @returns
+     */
+
+
     const generateAiContent = async (formData: any) => {
+        if(totalUsage >= 100000)
+        {
+            console.log("Please Upgrade");
+            router.push('/dasboard/billing')
+            return
+        }
         setLoading(true);
     //Set LOADING TRUE and FROM CURRENTTEMPLATE extract AiPromt
         const selectedPrompt = currentTemplate?.aiPrompt;
@@ -43,6 +62,8 @@ function CreateNewContent(props: PROPS) {
         setAiResponse(resultText)
         await saveInDatabase(JSON.stringify(formData), currentTemplate?.slug, resultText)
         setLoading(false);
+
+        setUpdateCreditUsage(Date.now())
     };
 
     const saveInDatabase = async(formData:any, slug:any, aiResponse:string) => {

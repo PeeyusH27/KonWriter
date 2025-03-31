@@ -25,9 +25,9 @@ const SideNav = () => {
             path: '/dashboard/billing'
         },
         {
-            name: 'Setting',
+            name: 'Settings',
             icon: Settings,
-            path: '/dashboard/setting'
+            path: '/dashboard/settings'
         },
     ]
 
@@ -47,7 +47,7 @@ const SideNav = () => {
                         hover:bg-primary hover:text-white rounded-lg cursor-pointer items-center 
                         ${path == menu.path && 'bg-primary text-white'}`}>
                             <menu.icon className='h-7 w-7' />
-                            <h2 className='text-lg'>{menu.name}</h2>
+                            <h2 className='text-md'>{menu.name}</h2>
                         </div>
                     </Link>
                 ))}

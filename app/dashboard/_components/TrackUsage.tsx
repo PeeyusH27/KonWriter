@@ -8,15 +8,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import {HISTORY} from '../history/page'
 import { eq } from 'drizzle-orm'
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext'
+import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext'
 
 const TrackUsage = () => {
 
     const {user} = useUser()
     const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
+    const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext)
 
     useEffect(() => {
         user && GetData()
     }, [user])
+
+    useEffect(() => {
+       user && GetData()
+    }, [updateCreditUsage && user])
     
     const GetData = async() => {
         if (!user?.primaryEmailAddress?.emailAddress) return;
@@ -39,10 +45,10 @@ const TrackUsage = () => {
             <div className='h-2 bg-rose-600 w-full rounded-full mt-3'>
                 <div className='h-2 bg-gradient-to-r from-gray-200 via-gray-300 to-white rounded-full'
                 style={{
-                    width:(totalUsage/10000)*100+"%"
+                    width:(totalUsage/100000)*100+"%"
                 }}></div>
             </div>
-            <h2 className='text-sm text-white my-2'>{totalUsage}/10,000 credits used</h2>
+            <h2 className='text-sm text-white my-2'>{totalUsage}/100,000 credits used</h2>
         </div>
         <Button variant={'secondary'} className='w-full my-3 text-primary'>Upgrade</Button>
     </div>

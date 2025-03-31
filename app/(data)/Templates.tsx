@@ -49,7 +49,7 @@ export default[
         category: 'Blog',
         icon: 'https://cdn-icons-png.flaticon.com/128/11497/11497847.png',
         slug: 'blog-topic-idea',
-        aiPrompt: 'Generate top 5 Blog Topic Ideas in bullet point only, (no Description) based on niche in rich text editor format',
+        aiPrompt: 'Generate top 5 Blog Topic Ideas in bullet point only, (no Description) based on niche in rich text editor format, Please provide the response in plain text format without any HTML tags.',
         form: [
             {
                 label: 'Enter your Niche',
@@ -219,7 +219,7 @@ export default[
         category: 'english',
        
         slug: 'english-grammer-checker',
-        aiPrompt: 'Rewrite the inputText by correcting the grammer and give output in  in rich text editor format',
+        aiPrompt: 'Rewrite the inputText by correcting the grammer and give output by creating a professional text from the input.',
         form: [
             {
                 label: 'Enter text to correct the grammer',
