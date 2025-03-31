@@ -34,7 +34,7 @@ function CreateNewContent(props: PROPS) {
     const {user} = useUser()
     const router = useRouter()
 
-    const currentTemplate: TEMP | undefined = Templates?.find((item) => item.slug == templateSlug);
+    const currentTemplate:TEMP|any = Templates?.find((item) => item.slug == templateSlug);
 
     const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
     const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext)
