@@ -2,11 +2,11 @@ import { serial, text, pgSchema, varchar, pgTable } from "drizzle-orm/pg-core";
 
 export const AIOutput = pgTable('aiOutput', {
     id:serial('id').primaryKey(),
-    formData:varchar('formData').notNull(),
-    aiResponse:text('aiResponse'),
-    templateSlug:varchar('templateSlug').notNull(),
-    createdBy:varchar('createdBy').notNull(),
-    createdAt: varchar('createdAt')
+    formData:text('form_data').notNull(),
+    aiResponse:text('ai_response'),
+    templateSlug:varchar('template_slug').notNull(),
+    createdBy:varchar('created_by').notNull(),
+    createdAt: varchar('created_at')
 })
 
 // export const mySchema = pgSchema("my_schema");
