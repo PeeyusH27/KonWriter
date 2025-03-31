@@ -20,11 +20,6 @@ const SideNav = () => {
             path: '/dashboard/history'
         },
         {
-            name: 'Billing',
-            icon: WalletCards,
-            path: '/dashboard/billing'
-        },
-        {
             name: 'Settings',
             icon: Settings,
             path: '/dashboard/settings'
