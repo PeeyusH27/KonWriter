@@ -6,7 +6,7 @@ import TemplateListSection from './_components/TemplateListSection'
 
 const DashBoard = () => {
 
-    const [userSearch, setUserSearch] = useState<string>()
+    const [userSearch, setUserSearch] = useState<string|any>()
 
   return (
     <div>
